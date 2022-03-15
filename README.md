@@ -1,2 +1,2 @@
 # spotify-scraper
-A python script that automates the designing process for @songplaquesjo on Instagram
+A python script that automates the product designing process for @songplaquesjo on Instagram
