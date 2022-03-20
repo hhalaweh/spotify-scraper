@@ -121,7 +121,7 @@ def convertMillis(millis):
     return str(minutes) + ":" + ('0' if int(seconds) < 10 else '') + str(int(seconds))
   
 # Reading orders csv file
-orders = pd.read_csv(csv_path)
+orders = pd.read_csv(csv_path, encoding = 'utf-8')
 
 # Creating dataframe with scraped data
 cols = ['image_links', 'uri', 'duration_ms']
@@ -174,7 +174,7 @@ design['Min:Sec'] = result_df['Min:Sec'].to_numpy()
 reorder = ['Customer Name', 'Size', 'Song Name', 'Artist Name', 'Timestamp.1', 'Min:Sec', 'Custom Photo', 'Text Color', 'Custom Quote', 'Extra Information (optional)']
 design = design[reorder] # Reorder columns
 
-design.to_csv(f'{main_path}Excel Files/design.csv') # Save design csv file
+design.to_csv(f'{main_path}Excel Files/design.csv', encoding = 'utf-8-sig') # Save design csv file
 
 # Creating csv files used in Photoshop from the dataframe
 grouped = design.groupby(design['Size'])
@@ -188,7 +188,7 @@ grouped = photoshop_input.groupby(photoshop_input['Size'])
 try:
   a4 = grouped.get_group('A4')
   del a4['Size']
-  a4.to_csv(f'{main_path}Excel Files/a4.csv', index = False)
+  a4.to_csv(f'{main_path}Excel Files/a4.csv', index = False, encoding = 'utf-8-sig')
   os.mkdir(f'{main_path}A4')
 except:
   print("A4 not found.")
@@ -196,7 +196,7 @@ except:
 try:
   a5 = grouped.get_group('A5')
   del a5['Size']
-  a5.to_csv(f'{main_path}Excel Files/a5.csv', index = False)
+  a5.to_csv(f'{main_path}Excel Files/a5.csv', index = False, encoding = 'utf-8-sig')
   os.mkdir(f'{main_path}A5')
 except:
   print("A5 not found.")
@@ -204,7 +204,7 @@ except:
 try:
   a3 = grouped.get_group('A3')
   del a3['Size']
-  a3.to_csv(f'{main_path}Excel Files/a3.csv', index = False)
+  a3.to_csv(f'{main_path}Excel Files/a3.csv', index = False, encoding = 'utf-8-sig')
   os.mkdir(f'{main_path}A3')
 except:
   print("A3 not found.")
@@ -212,7 +212,7 @@ except:
 try:
   ck = grouped.get_group('CK')
   ck = ck['CodeImage']
-  ck.to_csv(f'{main_path}Excel Files/ck.csv', index = False)
+  ck.to_csv(f'{main_path}Excel Files/ck.csv', index = False, encoding='utf-8')
   os.mkdir(f'{main_path}CK')
 except:
   print("CK not found.")
@@ -220,7 +220,7 @@ except:
 try:
   pk = grouped.get_group('PK')
   del pk['Size']
-  pk.to_csv(f'{main_path}Excel Files/pk.csv', index = False)
+  pk.to_csv(f'{main_path}Excel Files/pk.csv', index = False, encoding = 'utf-8')
   os.mkdir(f'{main_path}PK')
 except:
   print("PK not found.")
