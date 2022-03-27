@@ -121,7 +121,7 @@ def convertMillis(millis):
     return str(minutes) + ":" + ('0' if int(seconds) < 10 else '') + str(int(seconds))
   
 # Reading orders csv file
-orders = pd.read_csv(csv_path, encoding = 'utf-8')
+orders = pd.read_csv(csv_path, encoding = 'utf-8-sig')
 
 # Creating dataframe with scraped data
 cols = ['image_links', 'uri', 'duration_ms']
@@ -212,7 +212,7 @@ except:
 try:
   ck = grouped.get_group('CK')
   ck = ck['CodeImage']
-  ck.to_csv(f'{main_path}Excel Files/ck.csv', index = False, encoding='utf-8')
+  ck.to_csv(f'{main_path}Excel Files/ck.csv', index = False, encoding='utf-8-sig')
   os.mkdir(f'{main_path}CK')
 except:
   print("CK not found.")
@@ -220,7 +220,7 @@ except:
 try:
   pk = grouped.get_group('PK')
   del pk['Size']
-  pk.to_csv(f'{main_path}Excel Files/pk.csv', index = False, encoding = 'utf-8')
+  pk.to_csv(f'{main_path}Excel Files/pk.csv', index = False, encoding = 'utf-8-sig')
   os.mkdir(f'{main_path}PK')
 except:
   print("PK not found.")
